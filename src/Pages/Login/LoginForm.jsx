@@ -80,7 +80,7 @@ const formConfig = withFormik({
         password: yup.string().required().min(8).max(24).label('Password')
     }),
 
-    handleSubmit: (values) => {
+    handleSubmit: (values, formikBag) => {
         const { userId, password, isAdmin } = values
         const body = {
             userId,
@@ -88,9 +88,14 @@ const formConfig = withFormik({
             userType: isAdmin ? 'admin' : 'student'
         }
 
-        api.post('auth/login', body)
-        .then(res => console.log(res.data))
-        .catch(err => console.log(err.message))
+        formikBag.props.onLogin()
+        
+        // api.post('auth/login', body)
+        // .then(res => {
+        //     console.log(res.data)
+        //     formikBag.props.onLogin()
+        // })
+        // .catch(err => console.log(err.message))
     }
 })
 

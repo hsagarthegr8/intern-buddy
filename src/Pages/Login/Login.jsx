@@ -10,7 +10,7 @@ const LoginPage = props => {
                 <Paper elevation={2} className='h-100 p-30'>
                     <Grid container className='h-100' direction="column" justify="space-around">
                         <Grid item>
-                            <LoginForm />
+                            <LoginForm {...props}/>
                         </Grid>
 
                         <Grid item>
