@@ -88,14 +88,14 @@ const formConfig = withFormik({
             userType: isAdmin ? 'admin' : 'student'
         }
 
-        formikBag.props.onLogin()
+       // formikBag.props.onLogin()
         
-        // api.post('auth/login', body)
-        // .then(res => {
-        //     console.log(res.data)
-        //     formikBag.props.onLogin()
-        // })
-        // .catch(err => console.log(err.message))
+        api.post('auth/login', body)
+        .then(res => {
+            console.log(res.data)
+            formikBag.props.onLogin()
+        })
+        .catch(err => console.log(err.message))
     }
 })
 

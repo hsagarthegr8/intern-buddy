@@ -5,19 +5,33 @@ import { Login, Dashboard, Student, Organization, Profile } from './Pages'
 import { Header } from './Components'
 
 class App extends Component {
-    state = {
-        isLoggedIn: false
+    state = { isLoggedIn: true,
+        username: 'Himanshu',
+        profileObj:{
+            firstName: 'Swati',
+            lastName: 'Deora',
+            email: 'sdeora@gmail.com',
+            contactNo: '9090909090',
+            address: 'Delhi'
+        }
     }
 
     handleLogIn = () => {
         this.setState({
             isLoggedIn: true,
-            username: 'Himanshu'
+            username: 'Himanshu',
+            profileObj:{
+                firstName: 'Swati',
+                lastName: 'Deora',
+                email: 'sdeora@gmail.com',
+                contactNo: '9090909090',
+                address: 'Delhi'
+            }
         })
     }
 
     render () {
-        const { isLoggedIn, username } = this.state
+        const { isLoggedIn, username, profileObj } = this.state
         return (
             <Router>
                 <CssBaseline />
@@ -26,9 +40,9 @@ class App extends Component {
                         <Header username={username}/>
                         <Switch>
                             <Route exact path="/"><Dashboard /></Route>
-                            <Route exact path="/student"><Student /></Route>
+                            <Route exact path="/student"><Student/></Route>
                             <Route exact path="/organization"><Organization /></Route>
-                            <Route exact path="/profile"><Profile /></Route>
+                            <Route exact path="/profile"><Profile profileObj={profileObj}/></Route>
                             <Route><Redirect to='/' /></Route>
                         </Switch>
                     </div>
