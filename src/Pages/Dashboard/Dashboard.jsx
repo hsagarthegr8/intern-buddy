@@ -9,7 +9,7 @@ class Dashboard extends Component {
         return (
             <Grid container justify="space-around" style={{marginTop: 100}}> 
                 <Link to='/student'> <Section title="Students" /> </Link>
-                <Link to='/organization'><Section title="Organizations" /></Link>
+                <Link to='/organizations'><Section title="Organizations" /></Link>
                 <Link to='/profile'><Section title="Profile" /></Link>
             </Grid>
         )

@@ -56,3 +56,9 @@ html, body, #root {
   .main {
       padding: 30px
   }
+
+
+  .orglistitem {
+      padding: 15px !important;
+      text-align: left;
+  }

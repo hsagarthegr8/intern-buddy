@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import { CssBaseline, ThemeProvider } from '@material-ui/core'
-import { Login, Dashboard, Student, Organization, Profile } from './Pages'
+import { Login, Dashboard, Student, OrganizationList, Profile, Organization } from './Pages'
 import { Header } from './Components'
 
 import theme from './theme'
 
 class App extends Component {
     state = { isLoggedIn: true,
-        username: 'Himanshu',
+        username: 'Swati',
         profile:{
             firstName: 'Swati',
             lastName: 'Deora',
@@ -45,8 +45,9 @@ class App extends Component {
                         <Switch>
                             <Route exact path="/"><Dashboard /></Route>
                             <Route exact path="/student"><Student/></Route>
-                            <Route exact path="/organization"><Organization /></Route>
+                            <Route exact path="/organizations"><OrganizationList /></Route>
                             <Route exact path="/profile"><Profile profile={profile}/></Route>
+                            <Route exact path="/organizations/:orgId"><Organization /></Route>
                             <Route><Redirect to='/' /></Route>
                         </Switch>
                         </div>
