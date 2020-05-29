@@ -1,6 +1,7 @@
 import React from 'react'
-import { Grid, TextField, Button, Switch, FormControlLabel } from '@material-ui/core'
+import { Grid, Button, Switch, FormControlLabel } from '@material-ui/core'
 import { withFormik } from 'formik'
+import { TextField } from '../../Components'
 import * as yup from 'yup'
 import api from '../../api'
 
@@ -26,14 +27,7 @@ const LoginForm = (props) => {
                         required
                         fullWidth 
                         name="userId"
-                        error={touched.userId && Boolean(errors.userId)}
-                        helperText={touched.userId && errors.userId}
-                        value={values.userId}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        size="small"
                         className="form-field"
-                        variant="outlined"
                         label="User Id"
                     />
                 </Grid>
@@ -42,15 +36,8 @@ const LoginForm = (props) => {
                         required
                         fullWidth 
                         name="password"
-                        error={touched.password && Boolean(errors.password)}
-                        helperText={touched.password && errors.password}
-                        value={values.password}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        size="small"
                         type="password"
                         className="form-field"
-                        variant="outlined"
                         label="Password"
                     />
                 </Grid>

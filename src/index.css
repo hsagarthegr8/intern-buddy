@@ -11,6 +11,18 @@ html, body, #root {
     padding: 30px;
 }
 
+.mr-30 {
+    margin-right: 30px !important;
+}
+
+.mt-30 {
+    margin-top: 30px !important;
+}
+
+.m-30 {
+    margin: 30px !important;
+}
+
 .form-field {
     margin-bottom: 15px !important;
 }
@@ -39,4 +51,8 @@ html, body, #root {
 
   a {
       text-decoration: none;
+  }
+
+  .main {
+      padding: 30px
   }
