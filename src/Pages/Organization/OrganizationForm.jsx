@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { withFormik } from 'formik'
-import { Grid, Typography, Button } from '@material-ui/core'
-import { Edit, Close, Done} from '@material-ui/icons'
-import { TextField, Switch } from '../../Components'
+import { Grid, Typography, Button, FormLabel, 
+    RadioGroup, Radio, FormControlLabel, Paper } from '@material-ui/core'
+import { Edit, Close, Done, Delete} from '@material-ui/icons'
+import { TextField } from '../../Components'
 
 class OrganizationForm extends Component {
     state = {
@@ -15,27 +16,49 @@ class OrganizationForm extends Component {
         }))
     }
 
+    componentDidMount() {
+        const { organization } = this.props
+        if (!organization) {
+            this.setState({readOnly: false})
+        }
+    }
+
     render() {
         const { readOnly } = this.state
-        const { organization } = this.props
+        const { organization, values, handleChange } = this.props
+
         return (
+            <Paper className="p-30">
             <form noValidate>
                 <Grid container direction="row" justify="space-between">
                     <Grid item>
                         <Typography variant="h6">
-                            {organization.organizationName}
+                            {organization ? organization.organizationName : 'Add New Organization'}
                         </Typography>
                     </Grid>
                     <Grid item>
                     {readOnly ? 
-                    (<Button 
+                    (
+                    <>
+                        <Button
+                        color="primary" 
+                        variant="contained" 
+                        className="mr-30"
+                        startIcon={<Delete />}
+                        onClick={this.toggleReadOnly}
+                        >
+                            Delete 
+                        </Button>
+                        <Button 
                         color="primary" 
                         variant="contained" 
                         startIcon={<Edit />}
                         onClick={this.toggleReadOnly}
-                    >
-                        Edit 
-                    </Button>
+                        >
+                            Edit 
+                        </Button>
+                    </>
+
                     ):(
                         <>
                             <Button 
@@ -53,7 +76,7 @@ class OrganizationForm extends Component {
                             startIcon={<Done />}
                             onClick={this.toggleReadOnly}
                             >
-                                Update 
+                                {organization ? 'Update' : 'Add'} 
                             </Button>
                         </>
                     )}
@@ -120,29 +143,42 @@ class OrganizationForm extends Component {
                             />
                         </Grid>
                     </Grid>
-                    <Grid container className="form-field" justify="space-between">
+                    <Grid container className="form-field" justify="space-between" alignItems="center">
                         <Grid item md={5}>
-                        <Switch label="Stipend" labelPlacement="top" name="stipend"/>
+                            <FormLabel component="legend">
+                                <Typography 
+                                variant="caption" 
+                                style={{ color: 'black'}}
+                                >
+                                    Internship Type
+                                </Typography>
+                            </FormLabel>
+                            <RadioGroup 
+                                name="internshipType" 
+                                value={values.internshipType} 
+                                onChange={handleChange}
+                            >
+                                <FormControlLabel
+                                    value="trainingPaid" 
+                                    disabled={readOnly}
+                                    control={<Radio  color="primary"/>} 
+                                    label="Paid Training" 
+                                />
+                                <FormControlLabel 
+                                    value="stipend" 
+                                    disabled={readOnly}
+                                    control={<Radio color="primary"/>} 
+                                    label="Provides Stipend" 
+                                />
+                            </RadioGroup>
                         </Grid>
                         <Grid item md={5}>
-                        <TextField 
-                            fullWidth 
-                            disabled={readOnly}
-                            name="stipendAmount" 
-                            label="Stipend Amount $" 
-                            />
-                        </Grid>
-                    </Grid>
-                    <Grid container className="form-field" justify="space-between">
-                        <Grid item md={5}>
-                        <Switch label="Training Paid" labelPlacement="top" name="trainingPaid"/>
-                        </Grid>
-                        <Grid item md={5}>
-                        <TextField 
-                            fullWidth 
-                            disabled={readOnly}
-                            name="trainingAmount " 
-                            label="Training Amount $" 
+                            <TextField 
+                                required
+                                fullWidth 
+                                disabled={readOnly}
+                                name="internshipAmount" 
+                                label="Amount"
                             />
                         </Grid>
                     </Grid>
@@ -161,6 +197,7 @@ class OrganizationForm extends Component {
                 
                 </Grid>
             </form>
+            </Paper>
         )}
 }
 
@@ -171,13 +208,14 @@ const formConfig = withFormik({
         organizationCity: organization ? organization.organizationCity : '',
         organizationWebsite: organization ? organization.organizationWebsite : '',
         organizationAddress: organization ? organization.organizationAddress : '',
-        stipend: organization ? organization.stipend : '',
         stipendAmount: organization ? organization.stipendAmount : '',
         supervisorContactNo: organization ? organization.supervisorContactNo : '',
         supervisorEmail: organization ? organization.supervisorEmail : '',
         supervisorName: organization ? organization.supervisorName : '',
         trainingAmount: organization ? organization.trainingAmount : '',
-        trainingPaid: organization ? organization.trainingPaid : ''
+        internshipType: organization ? (organization.stipend ? 'stipend' : 'trainingPaid') : '',
+        internshipAmount: organization ? 
+            (organization.stipend ? organization.stipendAmount : organization.trainingAmount) : ''
     })
 })
 

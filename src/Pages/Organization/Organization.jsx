@@ -22,9 +22,9 @@ class Organization extends Component {
         const { organization } = this.state
 
         return (
-            <Paper className="p-30" style={{minHeight: 400}}>
-                {organization && <OrganizationForm organization={organization} />}
-            </Paper>
+            
+                organization && <OrganizationForm organization={organization} />
+            
         )
     }
 }

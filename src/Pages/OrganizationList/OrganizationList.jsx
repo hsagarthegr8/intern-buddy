@@ -1,7 +1,9 @@
 import React, { Component }  from 'react'
 import api from '../../api'
-import { Paper, Grid, Typography } from '@material-ui/core'
+import { Paper, Grid, Typography, Button } from '@material-ui/core'
+import { Link } from 'react-router-dom'
 import OrgListItem from './OrgListItem'
+import { Add } from '@material-ui/icons'
 
 class OrganizationList extends Component {
     state = {
@@ -21,6 +23,18 @@ class OrganizationList extends Component {
                 <Grid container justify="space-between">
                     <Grid item>
                         <Typography variant="h6">Organizations</Typography>
+                    </Grid>
+                    <Grid item>
+                        <Link to='/organization/add'>
+                            <Button
+                                color="primary" 
+                                variant="contained" 
+                                startIcon={<Add />}
+                                onClick={this.toggleReadOnly}
+                            >
+                                Add Organization 
+                            </Button>
+                        </Link>
                     </Grid>
                 </Grid>
 

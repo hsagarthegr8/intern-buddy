@@ -5,6 +5,7 @@ import { Login, Dashboard, Student, OrganizationList, Profile, Organization } fr
 import { Header } from './Components'
 
 import theme from './theme'
+import OrganizationForm from './Pages/Organization/OrganizationForm'
 
 class App extends Component {
     state = { isLoggedIn: true,
@@ -48,6 +49,7 @@ class App extends Component {
                             <Route exact path="/organizations"><OrganizationList /></Route>
                             <Route exact path="/profile"><Profile profile={profile}/></Route>
                             <Route exact path="/organizations/:orgId"><Organization /></Route>
+                            <Route exact path="/organization/add"><OrganizationForm /></Route>
                             <Route><Redirect to='/' /></Route>
                         </Switch>
                         </div>
