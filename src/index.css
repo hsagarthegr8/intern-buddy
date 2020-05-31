@@ -59,6 +59,7 @@ html, body, #root {
 
 
   .orglistitem {
+      height: 100%;
       padding: 15px !important;
       text-align: left;
   }

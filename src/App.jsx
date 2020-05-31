@@ -49,7 +49,7 @@ class App extends Component {
                             <Route exact path="/organizations"><OrganizationList /></Route>
                             <Route exact path="/profile"><Profile profile={profile}/></Route>
                             <Route exact path="/organizations/:orgId"><Organization /></Route>
-                            <Route exact path="/organization/add"><OrganizationForm /></Route>
+                            <Route exact path="/organization/add"><Organization addMode /></Route>
                             <Route><Redirect to='/' /></Route>
                         </Switch>
                         </div>

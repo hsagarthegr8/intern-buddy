@@ -1,30 +1,57 @@
 import React, { Component } from 'react';
 
-import { Paper, Grid, Typography, Button } from '@material-ui/core'
 import { withRouter } from 'react-router-dom'
 import api from '../../api';
 import OrganizationForm from './OrganizationForm';
 
 class Organization extends Component {
     state = {
-        organization: null
+        organization: null,
+        readOnly: true
     }
 
     componentDidMount() {
         const { params } = this.props.match
+        const { addMode } = this.props
+        if (addMode) {
+            this.setState({
+                readOnly: false
+            })
+            return;
+        }
         api.get(`/api/organizations/${params.orgId}`).then(res => {
             this.setState({organization: res.data.organization})
         })
     }
 
+    toggleReadOnly = () => {
+        this.setState(prevState => ({
+            readOnly: !prevState.readOnly
+        }))
+    }
+
     render() {
 
-        const { organization } = this.state
+        const { organization, readOnly } = this.state
+        const { addMode } = this.props
+
+        if (addMode) {
+            return  (
+                <OrganizationForm 
+                    organization={organization} 
+                    readOnly={readOnly} 
+                    toggleReadOnly={this.toggleReadOnly}
+                />
+            )
+        }
 
         return (
-            
-                organization && <OrganizationForm organization={organization} />
-            
+            organization && 
+            <OrganizationForm 
+                organization={organization} 
+                readOnly={readOnly} 
+                toggleReadOnly={this.toggleReadOnly}
+            />
         )
     }
 }

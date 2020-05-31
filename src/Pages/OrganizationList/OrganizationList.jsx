@@ -40,7 +40,7 @@ class OrganizationList extends Component {
 
                 <Grid container direction className="mt-30">
                     {organizations.map(org => (
-                        <Grid item md={3} key={org.id} >
+                        <Grid item md={3} key={org.id} style={{padding:15}} >
                         <OrgListItem organization={org} />
                         </Grid>
                     ))}
