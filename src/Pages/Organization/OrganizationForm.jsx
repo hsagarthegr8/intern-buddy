@@ -12,7 +12,7 @@ class OrganizationForm extends Component {
     
     onDelete = () => {
         const {organization} = this.props
-        api.delete(`/api/organizations/${organization.id}`).then(res => {
+        api.delete(`/api/organizations/${organization._id}`).then(res => {
             this.props.history.replace('/organizations')
         })
     }
@@ -213,7 +213,7 @@ const formConfig = withFormik({
     validationSchema: yup.object().shape({
         organizationName: yup.string().required().label('Organization Name'),
         organizationCity: yup.string().required().label('Organization City'),
-        organizationWebsite: yup.string().url().required().label('organization Website'),
+        organizationWebsite: yup.string().url().required().label('Organization Website'),
         organizationAddress: yup.string().required().label('Organization Website'),
         supervisorContactNo: yup.string().length(10).matches(/[0-9]*/).required().label('Supervisor Contact Number'),
         supervisorEmail: yup.string().email().required().label('Supervisor Email'),
@@ -246,7 +246,7 @@ const formConfig = withFormik({
                 formikBag.props.history.replace('/organizations/')
             })
         }
-        api.patch(`/api/organizations/${organization.id}`, body).then(res => {
+        api.patch(`/api/organizations/${organization._id}`, body).then(res => {
             toggleReadOnly()
         })
         

@@ -12,7 +12,7 @@ class OrganizationList extends Component {
 
     componentDidMount() {
         api.get('/api/organizations/').then(res => {
-            this.setState({organizations: res.data.organizations})
+            this.setState({organizations: res.data.organization})
         })
     }
 

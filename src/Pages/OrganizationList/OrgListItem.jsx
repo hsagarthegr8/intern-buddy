@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const OrgListItem = ({organization}) => {
     return (
-        <Link to={`organizations/${organization.id}`}>
+        <Link to={`organizations/${organization._id}`}>
         <Button fullWidth color="primary" variant="outlined" className="orglistitem">
             <Grid container direction="column">
                 <Typography>{organization.organizationName}</Typography>
