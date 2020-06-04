@@ -34,6 +34,13 @@ class Student extends Component {
         })
     }
 
+    onDelete = () => {
+        const { history, match: { params } } = this.props
+        api.delete(`api/students/${params.sid}`).then(res => {
+            history.replace('/students')
+        })
+    }
+
     render() {
         const { student, personalDetailsReadOnly, academinDetailsReadOnly } = this.state
         return (
