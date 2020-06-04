@@ -3,6 +3,7 @@ import { Grid, Paper, Button, Typography } from '@material-ui/core'
 import { Edit, Close, Done } from '@material-ui/icons'
 import { withFormik } from 'formik'
 import { TextField } from '../../Components'
+import * as yup from 'yup'
 
 class Profile extends Component {
     state =  {
@@ -127,7 +128,19 @@ const formConfig = withFormik({
         email: profile.email,
         contactNo: profile.contactNo,
         address: profile.address
-    })
+    }),
+
+    validationSchema: yup.object().shape({
+        firstName: yup.string().required().label('First Name'),
+        lastName: yup.string().required().label('LastName City'),
+        address: yup.string().required().label('Address'),
+        contactNo: yup.string().length(10).matches(/[0-9]*/).required().label('Contact Number'),
+        email: yup.string().email().required().label('Email')
+    }),
+
+    handleSubmit: (values, formikBag) => {
+        console.log(values)
+    }
 })
 
 export default formConfig(Profile)

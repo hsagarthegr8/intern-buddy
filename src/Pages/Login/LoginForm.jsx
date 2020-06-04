@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Button, Switch, FormControlLabel } from '@material-ui/core'
+import { Grid, Button, Switch, FormControlLabel, Typography } from '@material-ui/core'
 import { withFormik } from 'formik'
 import { TextField } from '../../Components'
 import * as yup from 'yup'
@@ -10,6 +10,7 @@ const LoginForm = (props) => {
     return (
         <form noValidate onSubmit={handleSubmit}>
             <Grid container>
+                <Typography className="form-field" variant="h6">Login Here</Typography>
                 <Grid item sm={12}>
                     <FormControlLabel 
                         name="isAdmin"
@@ -80,7 +81,7 @@ const formConfig = withFormik({
         api.post('auth/login', body)
         .then(res => {
             console.log(res.data)
-            formikBag.props.onLogin()
+            formikBag.props.onLogin(res.data)
         })
         .catch(err => console.log(err.message))
     }
