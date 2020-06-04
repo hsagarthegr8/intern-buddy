@@ -19,7 +19,7 @@ class OrganizationForm extends Component {
 
     render() {
         const { readOnly, toggleReadOnly, organization, 
-            values, handleChange, handleSubmit } = this.props
+            values, handleChange, handleSubmit, role } = this.props
 
         return (
             <Paper className="p-30">
@@ -30,6 +30,7 @@ class OrganizationForm extends Component {
                             {organization ? organization.organizationName : 'Add New Organization'}
                         </Typography>
                     </Grid>
+                    {role === 'admin' &&
                     <Grid item>
                     {readOnly ? 
                     (
@@ -75,6 +76,7 @@ class OrganizationForm extends Component {
                         </>
                     )}
                     </Grid>
+    }
                 </Grid>
                 <Grid container className="mt-30">
                     <Grid item md={6}>

@@ -75,8 +75,6 @@ const formConfig = withFormik({
             password,
             userType: isAdmin ? 'admin' : 'student'
         }
-
-       // formikBag.props.onLogin()
         
         api.post('auth/login', body)
         .then(res => {

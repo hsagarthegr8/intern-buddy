@@ -30,6 +30,14 @@ class App extends Component {
         })
     }
 
+    handleLogout = () => {
+        this.setState({
+            isLoggedIn: false,
+            token: undefined,
+            user: {}
+        })
+    }
+
     render () {
         const { isLoggedIn, user } = this.state
         return (
@@ -38,16 +46,22 @@ class App extends Component {
                 <CssBaseline />
                 {isLoggedIn ? (
                     <div className="page">
-                        <Header user={user}/>
+                        <Header user={user} onLogout={this.handleLogout}/>
                         <div className="main">
                         <Switch>
-                            <Route exact path="/"><Dashboard /></Route>
-                            <Route exact path="/students"><StudentList/></Route>
-                            <Route exact path="/student/add"><AddStudent /></Route>
-                            <Route exact path="/organizations"><OrganizationList /></Route>
+                            <Route exact path="/"><Dashboard user={user}/></Route>
+                            <Route exact path="/organizations"><OrganizationList user={user}/></Route>
                             <Route exact path="/profile"><Profile profile={user}/></Route>
-                            <Route exact path="/organizations/:orgId"><Organization /></Route>
-                            <Route exact path="/organization/add"><Organization addMode /></Route>
+                            <Route exact path="/organizations/:orgId"><Organization user={user}/></Route>
+                            {user.role === 'admin' && (
+                                <>
+                                <Route exact path="/organization/add"><Organization addMode /></Route>
+                                <Route exact path="/students"><StudentList/></Route>
+                                <Route exact path="/students/:sid"><Student /></Route>
+                                <Route exact path="/student/add"><AddStudent /></Route>
+                                </>
+                            )
+                            }
                             <Route><Redirect to='/' /></Route>
                         </Switch>
                         </div>

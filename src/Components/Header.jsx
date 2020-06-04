@@ -4,8 +4,7 @@ import { AppBar, Toolbar, Grid, Typography, Button } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 
 const Header = props => {
-    const { user } = props
-    console.log(user)
+    const { user, onLogout } = props
     return (
         <AppBar position="static" >
             <Toolbar variant="dense">
@@ -16,7 +15,7 @@ const Header = props => {
                     <Grid item xs />
                     <Grid>
                         <Typography display="inline" style={{marginRight: 10}}>Hi {user.userId}</Typography>
-                        <Button color="inherit">Logout</Button>
+                        <Button color="inherit" onClick={onLogout}>Logout</Button>
                     </Grid>
                 </Grid>
             </Toolbar>

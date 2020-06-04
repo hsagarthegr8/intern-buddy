@@ -17,6 +17,7 @@ class OrganizationList extends Component {
     }
 
     render() {
+        const { user: {role}} = this.props
         const { organizations } = this.state
         return (
             <Paper className="p-30" style={{minHeight: 400}}>
@@ -24,6 +25,7 @@ class OrganizationList extends Component {
                     <Grid item>
                         <Typography variant="h6">Organizations</Typography>
                     </Grid>
+                    {role === 'admin' &&
                     <Grid item>
                         <Link to='/organization/add'>
                             <Button
@@ -35,7 +37,7 @@ class OrganizationList extends Component {
                                 Add Organization 
                             </Button>
                         </Link>
-                    </Grid>
+                    </Grid>}
                 </Grid>
 
                 <Grid container direction className="mt-30">

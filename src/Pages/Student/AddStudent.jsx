@@ -36,6 +36,24 @@ class AddStudent extends Component {
                     <Grid item md={6}>
                     <Grid container className="form-field" justify="space-between">
                     <Grid item md={5}>
+                        <TextField 
+                            required 
+                            fullWidth
+                            name="userId" 
+                            label="User Id"
+                        />
+                    </Grid>
+                    <Grid item md={5}>
+                        <TextField 
+                            required 
+                            fullWidth
+                            name="email"
+                            label="Email"
+                        />
+                    </Grid>
+                    </Grid>
+                    <Grid container className="form-field" justify="space-between">
+                    <Grid item md={5}>
                         <TextField
                             required 
                             fullWidth
@@ -52,15 +70,8 @@ class AddStudent extends Component {
                         />
                     </Grid>
                 </Grid>
-                <Grid container className="form-field" justify="space-between">
-                    <Grid item md={5}>
-                        <TextField 
-                            required 
-                            fullWidth
-                            name="email" 
-                            label="Email"
-                        />
-                    </Grid>
+                
+                    <Grid container className="form-field" justify="space-between">
                     <Grid item md={5}>
                         <TextField 
                             required 
@@ -69,9 +80,6 @@ class AddStudent extends Component {
                             label="Contact Number"
                         />
                     </Grid>
-                    
-                    </Grid>
-                    <Grid container className="form-field" justify="space-between">
                         <Grid item md={5}>
                         <TextField 
                             fullWidth 
@@ -93,6 +101,7 @@ class AddStudent extends Component {
 
 const formConfig = withFormik({
     mapPropsToValues: () => ({
+        userId: '',
         firstName:  '',
         lastName: '',
         email: '',
@@ -101,6 +110,7 @@ const formConfig = withFormik({
     }),
 
     validationSchema: yup.object().shape({
+        userId: yup.string().required().label('UserId'),
         firstName: yup.string().required().label('First Name'),
         lastName: yup.string().required().label('Last Name'),
         email: yup.string().email().required().label('Email'),

@@ -33,7 +33,7 @@ class Organization extends Component {
     render() {
 
         const { organization, readOnly } = this.state
-        const { addMode } = this.props
+        const { addMode, user: {role} } = this.props
 
         if (addMode) {
             return  (
@@ -48,6 +48,7 @@ class Organization extends Component {
         return (
             organization && 
             <OrganizationForm 
+                role={role}
                 organization={organization} 
                 readOnly={readOnly} 
                 toggleReadOnly={this.toggleReadOnly}
