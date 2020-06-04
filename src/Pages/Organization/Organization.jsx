@@ -38,7 +38,7 @@ class Organization extends Component {
         if (addMode) {
             return  (
                 <OrganizationForm 
-                    organization={organization} 
+                    role = {role}
                     readOnly={readOnly} 
                     toggleReadOnly={this.toggleReadOnly}
                 />

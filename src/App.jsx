@@ -55,7 +55,7 @@ class App extends Component {
                             <Route exact path="/organizations/:orgId"><Organization user={user}/></Route>
                             {user.role === 'admin' && (
                                 <>
-                                <Route exact path="/organization/add"><Organization addMode /></Route>
+                                <Route exact path="/organization/add"><Organization user={user} addMode /></Route>
                                 <Route exact path="/students"><StudentList/></Route>
                                 <Route exact path="/students/:sid"><Student /></Route>
                                 <Route exact path="/student/add"><AddStudent /></Route>
